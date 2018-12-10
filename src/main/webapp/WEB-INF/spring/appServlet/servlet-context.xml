@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- 리소스(정적객체 이미지등..) URL및 위치 설정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/uploadimg/**" location="/uploadimg/" />
+	<resources mapping="/css/**" location="/css/" />
+
+	<!-- 맵핑이 안되는경우 정적객체를 참조 한다. -->
+	<default-servlet-handler/>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 프레젠테이션 레이어 패키지 변경 -->
+	<!-- 기본으로 사용시 패키지명에 따라 서비스 객체 및 DAO 객체들이 여기 IoC 객체에 2중으로 등록 될 수 있음 -->
+	<context:component-scan base-package="com.ja.springboard.controller" />
+	
+	<!-- 스프일 파일 업로더 파서... commons 라이브러리를 이용 -->	
+	<beans:bean id="multipartResolver" 
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000"></beans:property>
+	</beans:bean>
+	
+</beans:beans>
+
+
+
+
+
+
+

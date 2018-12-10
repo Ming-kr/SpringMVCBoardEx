@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 핵심...내가 만든 컨트롤러 , 서비스 등 IoC컨테이너에 생성  -->
+	<context:component-scan base-package="com.ja.springboard.service"></context:component-scan>	
+	
+	<!-- AOP 어노테이션 사용 가능 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 트랜젝션 어노테이션 사용 가능 -->
+	<tx:annotation-driven/>
+	
+	<!-- Mybatis 어노테이션 사용 가능(Mapper Interface)  -->
+	<mybatis-spring:scan base-package="com.ja.springboard.mapper"/>
+		
+	<!-- DB Connect 관리 객체 생성 및 IoC 컨테이너에 생성 -->
+	<!-- DBCP (Connection Pool) -->
+	<bean id="dataSource" 
+		class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:MYORACLE"></property>
+		<property name="username" value = "SCOTT"></property>
+		<property name="password" value = "TIGER"></property>
+	</bean>	
+	
+	<!-- mybatis용 세션 관리 객체 생성 -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>		
+	</bean>	
+		
+	<!-- 트랜젝션 매니저 빈 등록 -->		
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"/>
+	</bean>	
+		
+</beans>
+
