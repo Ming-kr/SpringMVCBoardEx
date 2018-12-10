@@ -19,5 +19,8 @@ public interface MemberSQLMapper {
 	@Select("SELECT * FROM member_1023 WHERE m_idx=#{m_idx}")
 	public MemberVO selectByIdx(String m_idx);
 	//매개변수 @Param("id") String m_id , @Param("pw") String m_pw 로 여러 값 받을 수 있음
-	//객체 변수도 여러 값 받을 수 있나???.... 불 가능 할듯....
+	//객체 변수도 여러 값 받을 수 있나???.... 가능!!
+	//@Param("rule")ControlRuleTable rule
+	//#{rule.control_date}
+	
 }
