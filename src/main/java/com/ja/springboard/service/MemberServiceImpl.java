@@ -15,7 +15,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberSQLMapper memberSQLMapper; 
 	
-	
 	@Override
 	public void joinMember(MemberVO requestMemberVO) {
 		// TODO Auto-generated method stub
@@ -26,7 +25,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		memberSQLMapper.insert(requestMemberVO);
 	}
-
 
 	@Override
 	public SessionUserData login(MemberVO requestMemberVO) {
@@ -46,7 +44,6 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
-
 	@Override
 	public boolean confirmID(MemberVO requestMemberVO) {
 		// TODO Auto-generated method stub
@@ -59,12 +56,4 @@ public class MemberServiceImpl implements MemberService {
 		
 		return false;
 	}
-	
-	
-	
 }
-
-
-
-
-

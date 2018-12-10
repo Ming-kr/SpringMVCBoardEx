@@ -24,7 +24,7 @@ import com.ja.springboard.vo.SessionUserData;
 public class ContentController {
 
 	public ContentController() {
-		System.out.println("[init] ContentController 로드 : ");
+		//System.out.println("[init] ContentController 로드 : ");
 	}
 	
 	@Autowired
@@ -38,14 +38,12 @@ public class ContentController {
 	
 	@RequestMapping("/")
 	public String home(Model model) {
-		
 		return board(model);
 	}
 	
 	//로직 처리용
 	@RequestMapping("/writeContentFormAction")
 	public String writeContentFormAction(MultipartFile[] files,ContentVO requestContentVO , HttpSession session) {
-	
 		ArrayList<AttachImgFileVO> fileDataList = 
 				new ArrayList<AttachImgFileVO>(); 
 		
@@ -64,11 +62,8 @@ public class ContentController {
 		
 		File uploadPath = new File(uploadRootPath,dateFolder); 		
 		
-		
-		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
-			
 		}
 		
 		for(MultipartFile file : files) {
@@ -105,76 +100,43 @@ public class ContentController {
 			fileDataList.add(fileData);
 		}
 		
-		
-		
-		SessionUserData user = 
-	(SessionUserData)session.getAttribute("sessionUserData");
+		SessionUserData user = (SessionUserData)session.getAttribute("sessionUserData");
 		requestContentVO.setM_idx(user.getM_idx());
-		
 		contentService.writeContent(requestContentVO,fileDataList);
-		
 		return "redirect:/board";
 	}
 	
 	@RequestMapping("/board")
 	public String board(Model model) {
-		
-		ArrayList<BoardDataVO> boardDataList = 
-				contentService.getContentList();
-		
+		ArrayList<BoardDataVO> boardDataList = contentService.getContentList();
 		model.addAttribute("boardDataList", boardDataList);
-		
 		return "/board";
 	}
 	
 	@RequestMapping("/readContentForm")
 	public String readContentForm(ContentVO requestContentVO , Model model) {
-		
 		BoardDataVO data = contentService.getContent(requestContentVO);		
-		
 		model.addAttribute("data" , data);
-		
 		return "/readContentForm";
 	}
 	
 	@RequestMapping("/deleteContent")
 	public String deleteContent(ContentVO requestContentVO) {
-		
 		contentService.deleteContent(requestContentVO);
-		
 		return "redirect:/board";
 	}
 	
 	@RequestMapping("/updateContentForm")
 	public String updateContent(ContentVO requestContentVO , Model model) {
-		
 		BoardDataVO data = 
 				contentService.getContent(requestContentVO);
-		
 		model.addAttribute("data" , data);
-		
 		return "/updateContentForm";
 	}
 	
 	@RequestMapping("/updateContentFormAction")
 	public String updateContentFormAction(ContentVO requestContentVO) {
-		
 		contentService.updateContent(requestContentVO);
-		
 		return "redirect:/board";
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-

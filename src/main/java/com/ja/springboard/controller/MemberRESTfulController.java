@@ -14,7 +14,6 @@ public class MemberRESTfulController {
 	@Autowired
 	MemberService memberService; 
 	
-	
 	@RequestMapping("/confirmID")
 	public ConfirmData confirmID(MemberVO requestMemberVO) {
 		ConfirmData confirmData = null;
@@ -24,18 +23,6 @@ public class MemberRESTfulController {
 		}else {
 			confirmData = new ConfirmData(false);
 		}
-		
 		return confirmData;
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-

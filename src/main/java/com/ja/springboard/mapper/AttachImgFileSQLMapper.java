@@ -13,12 +13,4 @@ public interface AttachImgFileSQLMapper {
 	
 	@Select("SELECT * FROM attachimgfile_1023 WHERE c_idx=#{c_idx}")
 	public ArrayList<AttachImgFileVO> selectByC_idx(String c_idx);
-	
 }
-
-
-
-
-
-
-

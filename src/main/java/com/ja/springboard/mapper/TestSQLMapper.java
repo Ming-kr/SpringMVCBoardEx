@@ -19,17 +19,9 @@ public interface TestSQLMapper {
 	@Insert("INSERT INTO testtable VALUES(#{t_idx, jdbcType=INTEGER},#{t_id, jdbcType=VARCHAR},#{t_pw},#{t_nick})")         
 	public void insertHashMap(HashMap<String,String> vo);
 	
-	
 	@Select("SELECT * FROM testtable")
 	public ArrayList<TestVO> select();
-
 	
 	@Select("SELECT * FROM testtable")
 	public ArrayList<HashMap<String,String>> selectHashMap();
-
 }
-
-
-
-
-

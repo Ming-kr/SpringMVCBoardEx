@@ -13,7 +13,7 @@ import com.ja.springboard.vo.*;
 
 @Service
 public class ContentServiceImpl implements ContentService{
-
+	
 	@Autowired
 	MemberSQLMapper memberSQLMapper;
 	@Autowired
@@ -21,10 +21,8 @@ public class ContentServiceImpl implements ContentService{
 	@Autowired
 	AttachImgFileSQLMapper attachImgFileSQLMapper;
 	
-	
 	@Override
 	public ArrayList<BoardDataVO> getContentList() {
-		// TODO Auto-generated method stub
 		ArrayList<BoardDataVO> boardDataList = 
 				new ArrayList<BoardDataVO>(); 
 		
@@ -32,20 +30,17 @@ public class ContentServiceImpl implements ContentService{
 				contentSQLMapper.selectAll();
 		
 		for(ContentVO content : contentList) {
-			
 			MemberVO memberVO = 
 			memberSQLMapper.selectByIdx(content.getM_idx());
 			
 			boardDataList.add(new BoardDataVO(memberVO,content));
 		}
-		
 		return boardDataList;
 	}
 
 	@Override
 	@Transactional
 	public void writeContent(ContentVO requestContentVO , ArrayList<AttachImgFileVO> fileDataList) {
-		// TODO Auto-generated method stub
 		//키 (증가된 c_idx)를 가져오고..
 		String c_idx = contentSQLMapper.selectKey();
 		requestContentVO.setC_idx(c_idx);
@@ -54,21 +49,15 @@ public class ContentServiceImpl implements ContentService{
 		
 		//반복문을 돌면서...
 		for(AttachImgFileVO fileVO : fileDataList) {
-			//fileVO.setC_idx("aaa");
+			//fileVO.setC_idx("aaa"); //트랜젝션 처리 테스트
 			fileVO.setC_idx(c_idx);
 			//DB에 저장..
-			
 			attachImgFileSQLMapper.insert(fileVO);
-			
 		}
-		
-		
-		
 	}
 
 	@Override
 	public BoardDataVO getContent(ContentVO requestContentVO) {
-		// TODO Auto-generated method stub
 		ContentVO contentVO = 
 				contentSQLMapper.selectByIdx(requestContentVO);
 		
@@ -83,24 +72,13 @@ public class ContentServiceImpl implements ContentService{
 
 	@Override
 	public void deleteContent(ContentVO requestContentVO) {
-		// TODO Auto-generated method stub
-		
 		contentSQLMapper.deleteByIdx(requestContentVO);
 		
 	}
 
 	@Override
 	public void updateContent(ContentVO requestContentVO) {
-		// TODO Auto-generated method stub
 		contentSQLMapper.update(requestContentVO);
 	}
 
 }
-
-
-
-
-
-
-
-

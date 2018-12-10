@@ -23,12 +23,4 @@ public interface ContentSQLMapper {
 	
 	@Delete("DELETE FROM content_1023 WHERE c_idx=#{c_idx}")
 	public void deleteByIdx(ContentVO vo);
-	
-	
-	
 }
-
-
-
-
-
