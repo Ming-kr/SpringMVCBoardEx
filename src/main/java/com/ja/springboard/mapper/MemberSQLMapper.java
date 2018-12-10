@@ -22,5 +22,6 @@ public interface MemberSQLMapper {
 	//객체 변수도 여러 값 받을 수 있나???.... 가능!!
 	//@Param("rule")ControlRuleTable rule
 	//#{rule.control_date}
+	//http://g1soft.kr/220858344769
 	
 }
