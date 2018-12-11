@@ -19,6 +19,12 @@
 		<!-- Spring -->
 		<!-- 라이브러리 추가.... 시작 -->
 		
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		
 		<!-- AOP weaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

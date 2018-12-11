@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.*;
 
 import com.ja.springboard.vo.MemberVO;
 
+//@Mapper //확인
+//http://jason-moon.tistory.com/130
 public interface MemberSQLMapper {
 	
 	//$표시는 statement(정적)

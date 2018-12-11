@@ -16,9 +16,18 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
+	//생성자 주입
+	/*
+	@Autowired 
+	public MemberController(MemberService memberService) { 
+		this.memberService = memberService; 
+	}
+	*/
+	
 	//단순 맵핑 메소드
 	@RequestMapping("/loginForm")
 	public String loginForm() {
+		
 		return "/loginForm";
 	}
 	
