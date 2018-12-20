@@ -48,7 +48,7 @@ public class ContentController {
 				new ArrayList<AttachImgFileVO>(); 
 		
 		//String uploadRootPath = "C:\\prod\\apache-tomcat-8.0.53\\wtpwebapps\\SpringMVCBoardEx\\uploadimg\\";
-		//String uploadRootPath = "c:\\upload\\";
+		//String uploadRootPath = "C:\\upload\\";
 		//for Linux
 		//String uploadRootPath = "/upload/";
 		//for Linux And Windows

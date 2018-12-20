@@ -1,11 +1,9 @@
 package com.ja.springboard.controller;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +70,44 @@ public class TestController {
 		System.out.println("listId : " + listId);
 		
 		return "/test";
+	}
+	@RequestMapping("/testMail")
+	public void testMail() {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.naver.com";		
+		String hostSMTPid = "s001lec@naver.com"; // 본인의 아이디 입력		
+		String hostSMTPpwd = "passwd"; // 비밀번호 입력
+		
+		// 보내는 사람 EMail, 제목, 내용 
+		String fromEmail = "s001lec@naver.com"; // 보내는 사람 eamil
+		String fromName = "test";  // 보내는 사람 이름
+		String subject = "이메일 발송 테스트"; // 제목
+		
+		// 받는 사람 E-Mail 주소
+		String mail = "s001352@gmail.com";  // 받는 사람 email		
+		
+		//E-Mail 본문 내용
+		String msg = "<p>이메일 발송 테스트 입니다.</p>";
+		
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(587);	// SMTP 포트 번호 입력
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 	
 }

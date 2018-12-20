@@ -19,6 +19,13 @@
 		<!-- Spring -->
 		<!-- 라이브러리 추가.... 시작 -->
 		
+		<!-- 메일... -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
