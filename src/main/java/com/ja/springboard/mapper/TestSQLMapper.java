@@ -41,6 +41,11 @@ public interface TestSQLMapper {
 	@SelectProvider(type = com.ja.springboard.mapper.TestSQLBuilder.class ,method = "selectInTest")
 	public ArrayList<TestVO> selectIn(@Param("listT_id") ArrayList<String> listT_id);
 	
+	//매개변수 @Param("id") String m_id , @Param("pw") String m_pw 로 여러 값 받을 수 있음
+	//객체 변수도 여러 값 받을 수 있나???.... 가능!!
+	//@Param("rule")ControlRuleTable rule
+	//#{rule.control_date}
+	//http://g1soft.kr/220858344769
 		
 }
 
